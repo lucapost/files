@@ -1,0 +1,65 @@
+set from                     = luca@postregna.name
+set realname                 = 'Luca Postregna'
+
+set mbox_type                = Maildir
+set folder                   = ~/docs/mail
+set spoolfile                = +/INBOX
+set postponed                = +[Gmail].Drafts
+set record                   = '+[Gmail].Sent Mail'
+
+set sendmail                 = /usr/bin/msmtp
+
+set header_cache             = ~/.mutt/cache/headers
+set message_cachedir         = ~/.mutt/cache/bodies
+set certificate_file         = ~/.mutt/certificates
+
+
+set markers                  = no
+set pager_index_lines        = 5 
+set sort                     = threads
+set sort_aux                 = last-date-received
+set move                     = no
+set signature                = ~/.signature
+
+set alias_file               = ~/.mutt/aliases
+set sort_alias               = alias
+set reverse_alias            = yes
+
+ignore *
+unignore  Date To From: Subject X-Mailer Organization
+hdr_order Date To From: Subject X-Mailer Organization
+
+color normal	             white         black
+color attachment             brightyellow  black
+color hdrdefault             cyan          black
+color quoted                 green         black
+color signature              cyan          black
+color tilde	             blue          black
+color tree                   blue          black
+
+color index	             red           black ~D
+color index	             magenta       black ~T
+
+color body	             cyan          black [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+color body	             cyan          black (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+
+set pgp_decode_command       = 'gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f'
+set pgp_verify_command       = 'gpg --no-verbose --batch --output - --verify %s %f'
+set pgp_decrypt_command      = 'gpg --passphrase-fd 0 --no-verbose --batch --output - %f'
+set pgp_sign_command         = 'gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f'
+set pgp_clearsign_command    = 'gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f'
+set pgp_encrypt_only_command = 'pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f'
+set pgp_encrypt_sign_command = 'pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f'
+set pgp_import_command       = 'gpg --no-verbose --import -v %f'
+set pgp_export_command       = 'gpg --no-verbose --export --armor %r'
+set pgp_verify_key_command   = 'gpg --no-verbose --batch --fingerprint --check-sigs %r'
+set pgp_list_pubring_command = 'gpg --no-verbose --batch --with-colons --list-keys %r' 
+set pgp_list_secring_command = 'gpg --no-verbose --batch --with-colons --list-secret-keys %r' 
+
+set pgp_timeout              = 60
+set pgp_good_sign            = '^gpg: Good signature from'
+set crypt_autosign
+set crypt_replysign
+set crypt_verify_sig         = yes
+
+macro browser,index G        "<shell-escape>offlineimap\n"

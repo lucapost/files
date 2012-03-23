@@ -1,0 +1,11 @@
+[user]
+	name = Luca Postregna
+	email = luca.postregna@gmail.com
+[core]
+	editor = vim
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+[color]
+	ui = auto

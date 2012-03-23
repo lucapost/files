@@ -1,0 +1,9 @@
+.bashrc
+.git
+.gitconfig
+.irssi
+.msmtprc
+.mutt
+.ssh
+.tmux.conf
+.zshrc
